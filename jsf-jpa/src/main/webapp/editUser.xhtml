@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<title>JSF JPA</title>
+	<style type="text/css">
+.updateBtnStyle {
+	width: 80px !important;
+}
+
+.col-sm-updated {
+	padding-top: 7px;
+}
+
+.col-sm-updated a {
+	text-decoration: none !important;
+}
+
+.text-edit {
+	margin-left: 123px !important;
+	margin-top: 29px !important;
+}
+</style>
+</h:head>
+<h:body>
+	<center>
+		<h2>
+			<h:outputText value="Edit User" />
+		</h2>
+	</center>
+	<h:form styleClass="form-horizontal">
+		<div class="form-group">
+			<h:outputLabel for="idLabel" styleClass="control-label col-sm-2">Id:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="userId" value="#{userBean.updateId}" p:readonly="readonly"
+					styleClass="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h:outputLabel for="name" styleClass="control-label col-sm-2">New Name:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="name" value="#{userBean.name}"
+					styleClass="form-control" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h:outputLabel for="gender" styleClass="control-label col-sm-2">Gender:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:selectOneRadio value="#{userBean.gender}"
+					validatorMessage="Gender is required">
+					<f:selectItem itemValue="M" itemLabel="Male" />
+					<f:selectItem itemValue="F" itemLabel="Female" />
+					<f:validateRequired />
+				</h:selectOneRadio>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h:outputLabel for="address" styleClass="control-label col-sm-2">New Address:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="address" value="#{userBean.address}"
+					styleClass="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-2" />
+			<div class="col-sm-4">
+				<h:commandButton value="Update"
+					action="#{userBean.updateUser(userBean)}"
+					styleClass="btn btn-primary updateBtnStyle" />
+			</div>
+			<div class="col-sm-1" />
+			<div class="col-sm-updated">
+				<h:outputLink value="index.xhtml">View Record List</h:outputLink>
+			</div>
+		</div>
+		<div class="text text-success text-edit">
+			<h:message for="userId" />
+		</div>
+	</h:form>
+</h:body>
+</html>
